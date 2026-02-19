@@ -1,0 +1,18 @@
+# Build folders
+bin/
+obj/
+
+# Visual Studio cache
+.vs/
+
+# User files
+*.user
+*.suo
+
+# Rider / VSCode
+.idea/
+.vscode/
+
+# OS junk
+.DS_Store
+Thumbs.db

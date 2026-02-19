@@ -1,0 +1,133 @@
+﻿@model ApplicationFormApp.Models.ApplicationForm
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Edit Application</h2>
+
+    <form asp-action="Edit" method="post">
+
+        <!-- Hidden Id -->
+        <input type="hidden" asp-for="Id" />
+
+        <!-- ================= PERSONAL DETAILS ================= -->
+        <h4 class="mb-3">Personal Details</h4>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Name</label>
+                <input asp-for="FullName" class="form-control" maxlength="12" />
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label class="form-label">Country Code</label>
+                <input asp-for="CountryCode" class="form-control" />
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label class="form-label">Phone</label>
+                <input asp-for="PhoneNumber" class="form-control" maxlength="10" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label d-block">Gender</label>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" asp-for="Gender" value="Male" />
+                    <label class="form-check-label">Male</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" asp-for="Gender" value="Female" />
+                    <label class="form-check-label">Female</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" asp-for="Gender" value="Other" />
+                    <label class="form-check-label">Other</label>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">DOB</label>
+                <input asp-for="DOB" type="date" class="form-control" />
+            </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <!-- ================= QUALIFICATION ================= -->
+        <h4 class="mb-3">Qualification</h4>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Degree</label>
+                <input asp-for="Degree" class="form-control" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Branch</label>
+                <input asp-for="Branch" class="form-control" />
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Percentage</label>
+                <input asp-for="Percentage" class="form-control" />
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label class="form-label">Other Details</label>
+                <textarea asp-for="OtherDetails" class="form-control" rows="3"></textarea>
+            </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <!-- ================= ADDRESS ================= -->
+        <h4 class="mb-3">Address</h4>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Country</label>
+                <input asp-for="Country" class="form-control" />
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="form-label">State</label>
+                <input asp-for="State" class="form-control" />
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="form-label">City</label>
+                <input asp-for="City" class="form-control" />
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Pincode</label>
+                <input asp-for="Pincode" class="form-control" />
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="form-label">District</label>
+                <input asp-for="District" class="form-control" />
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label class="form-label">Street Address</label>
+                <textarea asp-for="StreetAddress" class="form-control" rows="2"></textarea>
+            </div>
+        </div>
+
+        <!-- ================= BUTTONS ================= -->
+        <div class="mt-4">
+            <button type="submit" class="btn btn-theme me-2">Update</button>
+            <a asp-action="List" class="btn btn-theme">Back to List</a>
+        </div>
+
+    </form>
+
+</div>

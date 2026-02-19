@@ -1,0 +1,33 @@
+﻿@model ApplicationFormApp.Models.ApplicationForm
+
+<div class="container mt-5">
+
+    <div class="card p-4">
+
+        <h3 class="mb-3">Delete Application</h3>
+
+        <p class="mb-4">
+            Are you sure you want to delete this record?
+        </p>
+
+        <div class="mb-4">
+            <p><strong>Name:</strong> @Model.FullName</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>City:</strong> @Model.City</p>
+        </div>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <button type="submit" class="btn btn-theme me-2">
+                Yes, Delete
+            </button>
+
+            <a asp-action="List" class="btn btn-theme">
+                Cancel
+            </a>
+        </form>
+
+    </div>
+
+</div>

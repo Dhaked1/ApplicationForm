@@ -1,0 +1,206 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #15173D;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+}
+.card {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #ffffff;
+    backdrop-filter: blur(6px);
+}
+
+.btn-primary {
+    background-color: #682c6e;
+    border-color: #682c6e;
+}
+
+    .btn-primary:hover {
+        background-color: #521f56;
+        border-color: #521f56;
+    }
+a {
+    color: #ffffff;
+}
+
+    a:hover {
+        color: #d1cfff;
+    }
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+}
+/* Headings use Playwrite */
+h1, h2, h3 {
+    font-family: 'Playwrite NZ Basic', cursive;
+    letter-spacing: 1px;
+}
+.btn {
+    font-family: 'Playwrite NZ Basic', cursive;
+    letter-spacing: 0.8px;
+}
+/* ===== CUSTOM BUTTON STYLE ===== */
+.btn {
+    background-color: #682c6e;
+    border: none;
+    color: #ffffff;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: 'Playwrite NZ Basic', cursive;
+    letter-spacing: 0.6px;
+    transition: all 0.25s ease;
+}
+
+    /* Hover Effect */
+    .btn:hover {
+        background-color: #7d3784;
+        color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    }
+
+    /* Click Feel */
+    .btn:active {
+        transform: translateY(0px);
+        box-shadow: none;
+    }
+
+
+.display-5 {
+    font-family: 'Playwrite NZ Basic', cursive;
+    font-weight: 400;
+}
+/* ===== NAVBAR BASE ===== */
+.custom-navbar {
+    background-color: #15173D;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Brand Styling */
+.navbar-brand {
+    font-family: 'Playwrite NZ Basic', cursive;
+    font-size: 1.5rem;
+    color: #ffffff !important;
+}
+
+/* Nav Links */
+.nav-link {
+    color: #ffffff !important;
+    margin-left: 24px;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+    /* Underline Hover Animation */
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        left: 0;
+        bottom: -4px;
+        background-color: #682c6e;
+        transition: 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .nav-link:hover {
+        color: #ffffff !important;
+    }
+
+/* Mobile Toggle Fix for Dark Theme */
+.navbar-toggler {
+    border-color: rgba(255,255,255,0.3);
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+.table .btn {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+}
+.table .btn {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+}
+/* ===== THEME BUTTON (Your Purple) ===== */
+.btn-theme {
+    background-color: #682c6e;
+    border: 1px solid #682c6e;
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 7px;
+    font-family: 'Playwrite NZ Basic', cursive;
+    transition: all 0.25s ease;
+}
+
+    /* Hover */
+    .btn-theme:hover {
+        background-color: #7a3380;
+        border-color: #7a3380;
+        color: #ffffff;
+    }
+
+    /* Click */
+    .btn-theme:active {
+        background-color: #55245a;
+        border-color: #55245a;
+    }
+
+/* Small table buttons */
+.table .btn-theme {
+    padding: 5px 12px;
+    font-size: 0.85rem;
+}
+/* ===== BRAND STYLE ===== */
+
+.brand-theme {
+    background-color: #682c6e; /* tumhara purple */
+    color: #ffffff !important;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+    /* Hover effect */
+    .brand-theme:hover {
+        background-color: #7a3480;
+        color: #ffffff !important;
+        transform: translateY(-1px);
+    }
+
+    /* Default bootstrap underline remove */
+    .brand-theme::after {
+        display: none !important;
+    }
+.navbar-brand.brand-theme:hover {
+    text-decoration: none;
+}

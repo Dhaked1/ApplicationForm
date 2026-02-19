@@ -1,0 +1,239 @@
+﻿@model ApplicationFormApp.Models.ApplicationForm
+
+<div class="container mt-4">
+
+    <div class="card p-4 shadow">
+
+        <h2 class="mb-4">Application Form</h2>
+
+        <form asp-action="Create" method="post">
+
+            <!-- ================= PERSONAL DETAILS ================= -->
+            <h4 class="mb-3">Personal Details</h4>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Name</label>
+                    <input asp-for="FullName" class="form-control" maxlength="12" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Country Code</label>
+                    <select asp-for="CountryCode" class="form-select">
+                        <option value="+91">+91</option>
+                        <option value="+1">+1</option>
+                        <option value="+44">+44</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Phone</label>
+                    <input asp-for="PhoneNumber" class="form-control" maxlength="10" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label d-block">Gender</label>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Gender" value="Male" />
+                        <label class="form-check-label">Male</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Gender" value="Female" />
+                        <label class="form-check-label">Female</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Gender" value="Other" />
+                        <label class="form-check-label">Other</label>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">DOB</label>
+                    <input asp-for="DOB" type="date" class="form-control" />
+                </div>
+
+                <div class="col-md-2 mb-3">
+                    <label class="form-label">Age</label>
+                    <input type="text" id="age" class="form-control" readonly />
+                </div>
+
+            </div>
+
+            <hr class="my-4" />
+
+            <!-- ================= QUALIFICATION ================= -->
+            <h4 class="mb-3">Qualification</h4>
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Degree</label>
+                    <input asp-for="Degree" class="form-control" />
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Branch</label>
+                    <input asp-for="Branch" class="form-control" />
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Percentage</label>
+                    <input asp-for="Percentage" type="number" class="form-control" />
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">Other Details</label>
+                    <textarea asp-for="OtherDetails" class="form-control"></textarea>
+                </div>
+
+            </div>
+
+            <hr class="my-4" />
+
+            <!-- ================= ADDRESS ================= -->
+            <h4 class="mb-3">Address</h4>
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Country</label>
+                    <select asp-for="Country" class="form-select">
+                        <option value="">--Select Country--</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">State</label>
+                    <select asp-for="State" class="form-select">
+                        <option value="">--Select State--</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">City</label>
+                    <select asp-for="City" class="form-select">
+                        <option value="">--Select City--</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Pincode</label>
+                    <input asp-for="Pincode" maxlength="6" class="form-control" />
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">District</label>
+                    <input asp-for="District" readonly class="form-control" />
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">Street Address</label>
+                    <textarea asp-for="StreetAddress" class="form-control"></textarea>
+                </div>
+
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-theme">Submit</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const dobInput = document.getElementById("DOB");
+            const ageInput = document.getElementById("age");
+            const countryDropdown = document.getElementById("Country");
+            const stateDropdown = document.getElementById("State");
+            const cityDropdown = document.getElementById("City");
+            const pincodeInput = document.getElementById("Pincode");
+            const districtInput = document.getElementById("District");
+
+            // AGE CALCULATION
+            dobInput.addEventListener("change", function () {
+                const dob = new Date(this.value);
+                const today = new Date();
+                let age = today.getFullYear() - dob.getFullYear();
+                const m = today.getMonth() - dob.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+                ageInput.value = age;
+            });
+
+            // LOAD COUNTRIES
+            fetch("https://countriesnow.space/api/v0.1/countries")
+            .then(res => res.json())
+            .then(data => {
+                data.data.forEach(c => {
+                    const option = new Option(c.country, c.country);
+                    countryDropdown.add(option);
+                });
+            });
+
+            // COUNTRY → STATES
+            countryDropdown.addEventListener("change", function () {
+                fetch("https://countriesnow.space/api/v0.1/countries/states", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ country: this.value })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    stateDropdown.innerHTML = '<option value="">--Select State--</option>';
+                    data.data.states.forEach(s => stateDropdown.add(new Option(s.name, s.name)));
+                });
+            });
+
+            // STATE → CITIES
+            stateDropdown.addEventListener("change", function () {
+                fetch("https://countriesnow.space/api/v0.1/countries/state/cities", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ country: countryDropdown.value, state: this.value })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    cityDropdown.innerHTML = '<option value="">--Select City--</option>';
+                    data.data.forEach(city => cityDropdown.add(new Option(city, city)));
+                });
+            });
+
+            // PINCODE → DISTRICT
+            pincodeInput.addEventListener("blur", function () {
+                if (this.value.length === 6) {
+                    fetch("https://api.postalpincode.in/pincode/" + this.value)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data[0].Status === "Success") {
+                            districtInput.value = data[0].PostOffice[0].District;
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}
