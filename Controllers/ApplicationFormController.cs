@@ -24,6 +24,9 @@ namespace ApplicationFormApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                // PostgreSQL ke liye DateTime ko UTC banana zaroori hai
+                model.DOB = DateTime.SpecifyKind(model.DOB, DateTimeKind.Utc);
+
                 _context.ApplicationForms.Add(model);
                 _context.SaveChanges();
 
@@ -32,6 +35,7 @@ namespace ApplicationFormApp.Controllers
 
             return View(model);
         }
+
 
         // GET: Thank You Page
         public IActionResult ThankYou()
@@ -62,6 +66,9 @@ namespace ApplicationFormApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Update ke time bhi DOB ko UTC banana zaroori hai
+                model.DOB = DateTime.SpecifyKind(model.DOB, DateTimeKind.Utc);
+
                 _context.ApplicationForms.Update(model);
                 _context.SaveChanges();
 
@@ -70,6 +77,7 @@ namespace ApplicationFormApp.Controllers
 
             return View(model);
         }
+
         // GET: Delete Confirmation
         public IActionResult Delete(int id)
         {
