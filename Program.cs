@@ -3,24 +3,49 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add MVC
 builder.Services.AddControllersWithViews();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+// ================= DATABASE CONNECTION =================
+
+// Render environment variable
+var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
+
+// Local fallback (so project still runs on your laptop)
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+}
+
+// Final safety check
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new Exception("Database connection string is missing. Set DB_CONNECTION in Render.");
+}
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 
 
-
+// ================= BUILD APP =================
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
+// ================= APPLY MIGRATIONS (IMPORTANT FOR RENDER) =================
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    // This creates DB tables automatically if not exists
+    db.Database.Migrate();
+}
+
+
+// ================= MIDDLEWARE =================
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -34,12 +59,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=ApplicationForm}/{action=Create}/{id?}");
-
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    db.Database.Migrate();
-}
-
 
 app.Run();
